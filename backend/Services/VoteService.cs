@@ -9,11 +9,9 @@ namespace backend.Services;
 public class VoteService : IVoteService
 {
     private VoteRepository _repository;
-    private PollRepository _pollRepository;
 
-    public VoteService(PollRepository pollRepository)
+    public VoteService()
     {
-        _pollRepository = pollRepository;
         _repository = new VoteRepository();
     }
 

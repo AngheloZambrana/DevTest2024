@@ -13,6 +13,7 @@ public class PollController : ControllerBase
 {
     private readonly IPollService _pollService;
     private readonly IMapper _mapper;
+    private const int contador = 3;
 
     public PollController(IPollService pollService, IMapper mapper)
     {
@@ -33,7 +34,7 @@ public class PollController : ControllerBase
     {
         if(!ModelState.IsValid)
             return BadRequest(ModelState);
-        var pollEntity = _mapper.Map<Polls>((postPoll, 4));
+        var pollEntity = _mapper.Map<Polls>((postPoll, contador));
         var result = await _pollService.CreatePoll(pollEntity);
         return Ok(_mapper.Map<PollDTO>(result));
     }

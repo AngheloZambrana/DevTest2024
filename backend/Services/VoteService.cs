@@ -1,5 +1,6 @@
 using backend.DTOs;
 using backend.Entities;
+using backend.Entities.Interface;
 using backend.Repositories;
 using backend.Services.Interfaces;
 
@@ -8,9 +9,11 @@ namespace backend.Services;
 public class VoteService : IVoteService
 {
     private VoteRepository _repository;
+    private PollRepository _pollRepository;
 
-    public VoteService()
+    public VoteService(PollRepository pollRepository)
     {
+        _pollRepository = pollRepository;
         _repository = new VoteRepository();
     }
 

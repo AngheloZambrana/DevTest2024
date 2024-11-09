@@ -11,7 +11,7 @@ public class PollProfile : Profile
     {
         CreateMap<Polls, PollDTO>();
         CreateMap<PollDTO, Polls>();
-        CreateMap<(PostPoll p, Guid id), Polls>()
+        CreateMap<(PostPoll p, int id), Polls>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.id))
             .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.p.Name))
             .ForMember(dest => dest.Options, opt => opt.MapFrom(src => src.p.Options)).ReverseMap();

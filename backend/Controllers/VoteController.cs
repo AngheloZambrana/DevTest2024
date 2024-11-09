@@ -13,6 +13,7 @@ public class VoteController : ControllerBase
 {
     private readonly IVoteService _voteService;
     private readonly IMapper _mapper;
+    private const int contador = 3;
 
     public VoteController(IVoteService voteService, IMapper mapper)
     {
@@ -32,9 +33,9 @@ public class VoteController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<VoteDTO>> Post(PostVote postVote)
     {
-        if(!ModelState.IsValid)
+        if (!ModelState.IsValid)
             return BadRequest(ModelState);
-        var voteEntity = _mapper.Map<Vote>((postVote, Guid.NewGuid()));
+        var voteEntity = _mapper.Map<Vote>((postVote,contador));
         var result = await _voteService.CreateVote(voteEntity);
         return Ok(_mapper.Map<VoteDTO>(result));
     }

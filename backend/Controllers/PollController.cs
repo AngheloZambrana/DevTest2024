@@ -33,7 +33,7 @@ public class PollController : ControllerBase
     {
         if(!ModelState.IsValid)
             return BadRequest(ModelState);
-        var pollEntity = _mapper.Map<Polls>((postPoll, Guid.NewGuid()));
+        var pollEntity = _mapper.Map<Polls>((postPoll, 4));
         var result = await _pollService.CreatePoll(pollEntity);
         return Ok(_mapper.Map<PollDTO>(result));
     }
